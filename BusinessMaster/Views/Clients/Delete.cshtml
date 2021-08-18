@@ -1,0 +1,57 @@
+﻿@model BusinessMaster.Models.Client
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientAge)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClientAge)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientBudget)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClientBudget)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkDeliveryDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WorkDeliveryDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicesName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ServicesName.ServiceName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ClientId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

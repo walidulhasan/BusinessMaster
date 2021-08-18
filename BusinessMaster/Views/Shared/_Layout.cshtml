@@ -1,0 +1,316 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> userManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="BusinessSuite saas is easy to use CRM software that is designed for B2B. It include  everything you need to run your businesses. like manage customers, projects, invoices, estimates, timelogs">
+    <meta name="author" content="Business Suite">
+    <meta name="keywords" content="best crm,hr management software, web hr software, hr software online, free hr software, hr software for sme, hr management software for small business, cloud hr software, online hr management software">
+
+    <meta property="og:title" content="Business Management Software: HR, CRM &amp; Project Task Management">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="index.html">
+    <meta property="og:site_name" content="Business Suite" />
+    <meta property="og:description" content="BusinessSuite saas is easy to use CRM software that is designed for B2B. It include  everything you need to run your businesses. like manage customers, projects, invoices, estimates, timelogs">
+    <meta property="og:image" content="~/img/home-crm.png" />
+
+    <link rel="icon" type="image/png" sizes="16x16" href="user-uploads/favicon/94a6b8edd2fee1951f6ee093204018ee.png">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="user-uploads/favicon/94a6b8edd2fee1951f6ee093204018ee.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>@ViewData["Title"] - BusinessMaster</title>
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet" media="all" href="~/saas/vendor/bootstrap/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" media="all" href="~/saas/vendor/animate-css/animate.min.css">
+    <link type="text/css" rel="stylesheet" media="all" href="~/saas/vendor/slick/slick.css">
+    <link type="text/css" rel="stylesheet" media="all" href="~/saas/vendor/slick/slick-theme.css">
+    <link type="text/css" rel="stylesheet" media="all" href="~/saas/fonts/flaticon/flaticon.css">
+    <link href="~/use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet" />
+    <!-- Template CSS -->
+    <link type="text/css" rel="stylesheet" media="all" href="~/saas/css/main.css">
+    <!-- Template Font Family  -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&amp;family=Rubik:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" media="all"
+          href="~/saas/vendor/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+    <script src="~/www.google.com/recaptcha/api.js"></script>
+    @*<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>*@
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+    <style>
+
+        /*Enter your auth css after this line*/
+        :root {
+            --main-color: #e94033;
+            --main-home-background: #e9403326;
+        }
+        /*To be removed to next 3.6.8 update. Added so as cached main.css to show background image on load*/
+        .section-hero .banner::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            background: linear-gradient(to bottom, #ffffff 0%,#fffdfd 50%, #fff2f3 100%);
+            opacity: 0.95;
+            padding-bottom: 400px;
+        }
+
+        .section-hero .banner {
+            background: url("/img/login-bg.jpg") center center/cover no-repeat !important;
+        }
+
+        .breadcrumb-section::after {
+            background: url("/img/login-bg.jpg") center center/cover no-repeat !important;
+        }
+
+        .help-block {
+            color: #8a1f11 !important;
+        }
+
+        .js-cookie-consent {
+            position: fixed;
+            bottom: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+    </style>
+    @RenderSection("styles", required: false)
+</head>
+<body id="home">
+    <header class="header position-relative">
+        <div class="navigation-bar" id="affix">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg p-0">
+                    <a class="logo" asp-action="Index" asp-controller="Home">
+                        <img class="logo-default" src="~/user-uploads/app-logo/c7b1b30550f92387032cb31b55752ca7.png" alt="home" style="max-height:35px" />
+                    </a>
+                    <button class="navbar-toggler border-0 p-0" type="button" data-toggle="collapse"
+                            data-target="#theme-navbar" aria-controls="theme-navbar" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-lines"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="theme-navbar">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Features" asp-controller="Home">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Pricing" asp-controller="Home">Pricing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Contact" asp-controller="Home">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="ClientView" asp-controller="Clients">Our Client</a>
+                            </li>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="ServicesNames">Service</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Clients">Client</a>
+                                </li>
+                            }
+
+
+                            <partial name="_LoginPartialCustom" />
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-white footer">
+        <div class="container border-bottom">
+            <div class="footer__widgets">
+                <div class="row">
+
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="widget footer__about-us">
+                            <a href="index.html" class="hover-logo d-inline-block">
+                                <img src="~/user-uploads/app-logo/c7b1b30550f92387032cb31b55752ca7.png" class="logo" style="max-height:35px">
+                            </a>
+
+                            <div class="socials mt-4">
+                                <a href="https://www.facebook.com/BusinessSuiteBD" class="zmdi zmdi-facebook" target="_blank">
+                                </a>
+                                <a href="https://twitter.com/BusinessSuite" class="zmdi zmdi-twitter" target="_blank">
+                                </a>
+                                <a href="https://instagram.com/BusinessSuite" class="zmdi zmdi-instagram" target="_blank">
+                                </a>
+                                <a href="https://dribbble.com/BusinessSuite" class="zmdi zmdi-dribbble" target="_blank">
+                                </a>
+                                <a href="https://www.youtube.com/" class="zmdi zmdi-youtube" target="_blank">
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div> <!-- end about us -->
+
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="widget widget-links">
+                            <h5 class="widget-title">Main</h5>
+                            <ul class="list-no-dividers">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                           asp-action="Signup" asp-controller="Account">Get Started</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                           asp-action="Features" asp-controller="Home">Features</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-action="Pricing" asp-controller="Home">Pricing</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-action="Index" asp-controller="Account" class="nav-link">Login</a>
+                                    </li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="widget widget-links">
+                            <h5 class="widget-title">Others</h5>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link"
+                                       asp-controller="Home" asp-action="termsofuse">Terms of use</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link"
+                                       asp-controller="Home" asp-action="Privacypolicy">Privacy Policy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="widget widget-links">
+                            <h5 class="widget-title">Contact</h5>
+
+                            <div class="socials mt-40">
+
+                                <div class="f-contact-detail mt-20">
+                                    <i class="flaticon-email"></i>
+                                    <p class="mb-0">info@businesssuite.us</p>
+                                </div>
+                                <div class="f-contact-detail mt-20">
+                                    <i class="flaticon-call"></i>
+                                    <p class="mb-0">+8801888042370</p>
+                                </div>
+
+                                <div class="f-contact-detail mt-20">
+                                    <i class="flaticon-placeholder"></i>
+                                    <p class="mb-0">Broadway 36th Floor, New York, NY 10001, United States</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- end container -->
+
+        <div class="footer__bottom top-divider">
+            <div class="container text-center ">
+                <span class="copyright mr-3">
+                    Copyright © 2021. All Rights Reserved
+                </span>
+                <div class="input-group d-inline-flex lang-selector">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="zmdi zmdi-globe-alt"></i></span>
+                    </div>
+
+                    <select class="custom-select custom-select-sm" onchange="location = this.value;">
+                        <option value="https://businesssuite.us/language/en" selected>
+                            English
+                        </option>
+                        <option value="index.html">
+                            বাংলা
+                        </option>
+                    </select>
+
+                </div>
+            </div>
+        </div> <!-- end footer bottom -->
+
+    </footer>
+    <!-- Scripts -->
+
+    <script src="~/saas/vendor/jquery/jquery.min.js"></script>
+    <script src="~/saas/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/saas/vendor/slick/slick.min.js"></script>
+    <script src="~/saas/vendor/wowjs/wow.min.js"></script>
+    <script src="~/saas/js/main.js"></script>
+    <script src="front/plugin/froiden-helper/helper.js"></script>
+    <!-- Global Required JS -->
+
+    <script>
+        var maxHeight = -1;
+        $(document).ready(function () {
+
+
+            var promise1 = new Promise(function (resolve, reject) {
+
+                $('.planNameHead').each(function () {
+                    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+                });
+                resolve(maxHeight);
+            }).then(function (maxHeight) {
+                // console.log(maxHeight);
+                $('.planNameHead').each(function () {
+                    $(this).height(Math.round(maxHeight));
+                });
+                $('.planNameTitle').each(function () {
+                    $(this).height(Math.round(maxHeight - 28));
+                });
+
+            });
+        });
+        function planShow(type) {
+            if (type == 'monthly') {
+                $('#monthlyPlan').show();
+                $('#annualPlan').hide();
+            }
+            else {
+                $('#monthlyPlan').hide();
+                $('#annualPlan').show();
+            }
+        }
+    </script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

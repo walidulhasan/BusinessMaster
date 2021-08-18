@@ -1,0 +1,112 @@
+﻿@model IEnumerable<BusinessMaster.Models.Client>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class=" breadcrumb-section">
+    <div class="container text-center">
+        <h1>Client List</h1>
+    </div>
+</div>
+<p class="text-center mt-3">
+    <a class="btn btn-info btn-sm" asp-action="Create"><i class="fas fa-plus fa-sm"></i> Create New</a>
+</p>
+<div class="container">
+    <table class="table table-bordered table-striped table-hover table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Client Name
+                </th>
+                <th>
+                    Client Age
+                </th>
+                <th>
+                    Application Budget
+                </th>
+                <th>
+                    Delivery Date
+                </th>
+                <th>
+                    Picture
+                </th>
+                <th>
+                    Services Name
+                </th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="font-weight-bold" id="@item.ClientId">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientAge)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClientBudget).0$
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WorkDeliveryDate)
+                    </td>
+                    <td>
+                        <img src="~/product_image/@item.Picture" width="50" height="50" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServicesName.ServiceName)
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-success btn-sm" asp-action="Edit" asp-route-id="@item.ClientId"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger btn-sm btnDelete" asp-action="Delete" asp-route-id="@item.ClientId"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts
+
+{
+    <script>
+        $('.btnDelete').on('click', function (event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            const id = $(this).closest('tr').attr('id');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then(function (value) {
+                if (value) {
+                    swal({
+                        title: 'Please wait',
+                        text: 'This item is being deleted!',
+                        icon: 'info',
+                        buttons: false,
+                    });
+
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: 'html'
+                    }).done(function (data) {
+                        setTimeout(function () {
+                            swal("Deleted!", "The record has been deleted.", "success").then(function () {
+                                $("tr[id='" + id + "']").remove();
+                            });
+                        }, 2000);
+                    }).fail(function () {
+                        swal("Deleted_Error", "Error while deleting. :(", "error");
+                    });
+                }
+            });
+        });
+    </script>
+}

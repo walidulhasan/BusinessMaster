@@ -1,0 +1,169 @@
+﻿@model BusinessMaster.Models.Client
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Client Details Information</title>
+    <meta name="description" content="Bolby - Portfolio/CV/Resume HTML Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="~/OnlyForDetailsView/css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/OnlyForDetailsView/css/all.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/OnlyForDetailsView/css/simple-line-icons.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/OnlyForDetailsView/css/slick.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/OnlyForDetailsView/css/animate.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/OnlyForDetailsView/css/magnific-popup.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/OnlyForDetailsView/css/style.css" type="text/css" media="all">
+
+
+
+</head>
+<body>
+    @*<div style="margin-top:60px">
+            <div class="card" style="width: 18rem;">
+                <img src="~/product_image/model => model.Picture" class="card-img-top" alt="..." width="300" height="300">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(model => model.ClientName)</h5>
+                    <h5 class="card-title">Age: @Html.DisplayFor(model => model.ClientAge)</h5>
+                    <div style="background-color:darkblue;border-radius:10px">
+                        <span class="d-flex justify-content-center font-weight-bold">Work Delivery Date</span>
+                        <label class="d-flex justify-content-center col-form-label">@Html.DisplayFor(model => model.WorkDeliveryDate)</label>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>*@
+    <div class="timeline mt-5 edu bg-white rounded shadow-dark padding-30 overflow-hidden container">
+        <!-- timeline item -->
+        <div class=" timeline-container wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <div class="content row">
+                <div class="col">
+                    <div class="col-12">
+                        <h2 class="section-title wow fadeInUp offset-4" style="visibility: visible; animation-name: fadeInUp; color:#080888;">Client Details Information</h2>
+                        <h3 class="title">@Html.DisplayFor(model => model.ClientName)</h3>
+                    </div>
+                    
+                    <div class="col-5" style="float:right">
+                        @*<img src="~/img/default.png" class="mb-4">*@
+                        
+                        <div class="text-center text-md-left">
+                            <!-- avatar image -->
+                            @*<img src="images/avatar-2.svg" alt="Bolby" class="boximg">*@
+                            <img src="~/product_image/@Model.Picture" class="boximg" width="200" height="200" />
+                        </div>
+                    </div>
+
+
+                    <div class="timeline-container wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                        <div class="content">
+                            <h3 class="title">Age: @Html.DisplayFor(model => model.ClientAge) <i class="text-danger">Years</i></h3>
+
+                            <div class="timeline-container wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+                                <div class="content">
+                                    <span class="title">Work Budget</span>
+                                    <h3 class="title">@Html.DisplayFor(model => model.ClientBudget) .0$</h3>
+                                    <span class="title">Work Delivery Date</span>
+                                    <h3 class="title">@Html.DisplayFor(model => model.WorkDeliveryDate)</h3>
+
+                                    <span class="title">Servic Name</span>
+                                    <a href="javascript:" class="btn btn-default"><i class="fas fa-spinner"></i> @Html.DisplayFor(model => model.ServicesName.ServiceName)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- main line -->
+        <span class="line"></span>
+
+    </div>
+    @*End*@
+
+    @*<h2>Details</h2>
+
+        <div>
+            <h4>Client</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClientName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ClientName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClientAge)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ClientAge)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ClientBudget)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ClientBudget)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.WorkDeliveryDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.WorkDeliveryDate)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Picture)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Picture)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ServicesName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ServicesName.ServiceName)
+                </dd>
+            </dl>
+        </div>*@
+    <div class="d-flex justify-content-center mt-4" >
+        <a asp-action="ClientView" asp-controller="Clients" class="btn btn-warning"><i class="fas fa-arrow-circle-left"></i> Back to List</a>
+    </div>
+
+    <script src="~/OnlyForDetailsView/js/jquery-1.12.3.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/jquery.easing.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/jquery.waypoints.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/jquery.counterup.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/popper.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/bootstrap.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/isotope.pkgd.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/infinite-scroll.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/slick.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/contact.js"></script>
+    <script src="~/OnlyForDetailsView/js/validator.js"></script>
+    <script src="~/OnlyForDetailsView/js/wow.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/morphext.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/parallax.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/OnlyForDetailsView/js/custom.js"></script>
+</body>
+
+</html>
+

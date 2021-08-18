@@ -1,0 +1,81 @@
+﻿@model BusinessMaster.Models.ViewModels.BusinessMasterViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+@section styles{
+
+    <link href="~/datedropper/Datedropper3/datedropper.css" rel="stylesheet" />
+}
+
+
+<div class="container" style="margin-top: 80px">
+    <h2 class="text-center mt-5" style="color:#020240">Client Add</h2>
+    <hr />
+    <div class="row" >
+        <div class="col ml-5">
+            <form asp-action="Create" enctype="multipart/form-data" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="control-label">Client Name</label>
+                            <input asp-for="ClientName" class="form-control" />
+                            <span asp-validation-for="ClientName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label">Delivery Date</label>
+                            <input asp-for="WorkDeliveryDate" class="form-control insertJoin" />
+                            <span asp-validation-for="WorkDeliveryDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Age</label>
+                            <input asp-for="ClientAge" class="form-control" />
+                            <span asp-validation-for="ClientAge" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" value="Create" class="btn btn-primary">Create</button>
+                            <a class="btn btn-info" style="float:right" asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        
+
+                        <div class="form-group">
+                            <label  class="control-label">Service Name</label>
+                            <select asp-for="ServicesNameId" class="form-control" asp-items="ViewBag.ServicesNameId"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ClientBudget" class="control-label">Budget</label>
+                            <input asp-for="ClientBudget" class="form-control" />
+                            <span asp-validation-for="ClientBudget" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <img src="~/img/default.png" width="80" height="80" id="imagePreview" class="mb-3 ml-5" />
+                            <input asp-for="PicturPath" id="Imageone" class="form-control" />
+                            <span asp-validation-for="PicturPath" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+
+    @section Scripts {
+        @Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script src="~/datedropper/Datedropper3/datedropper.js"></script>
+        <script type="text/javascript">
+            $(document).ready(() => {
+                $(".insertJoin").dateDropper(/*"{0:MM/dd/yyyy}"*/);
+            });
+
+            $('#Imageone').change(function (event) {
+                var tmppath = URL.createObjectURL(event.target.files[0]);
+                $("#imagePreview").fadeIn("fast").attr('src', URL.createObjectURL(event.target.files[0]));
+            });
+        </script>
+    }
+</div>

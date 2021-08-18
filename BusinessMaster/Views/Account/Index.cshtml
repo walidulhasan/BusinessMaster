@@ -1,0 +1,139 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="user-uploads/favicon/94a6b8edd2fee1951f6ee093204018ee.png">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="user-uploads/favicon/94a6b8edd2fee1951f6ee093204018ee.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Business Suite</title>
+
+    <link href="~/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/less/icons/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/css/auth.css" rel="stylesheet">
+    <script>window.Laravel = { "csrfToken": "vXYEPSAafgxCI7GVTgLPL0YsvkBWLTCusznL50Va" };</script>
+
+    <style>
+        #background-section {
+            background: url("/img/login-bg.jpg") center center/cover no-repeat !important;
+        }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-lg-5" id="form-section">
+                <div id="auth-logo">
+                    <img src="~/user-uploads/app-logo/9d9032cf3f44f7fa2659beb4af66612d.png" style="max-height: 50px" alt="Logo" />
+                </div>
+
+                <div id="auth-form">
+                    <form class="form-horizontal form-material" id="loginform" action="https://businesssuite.us/login" method="POST">
+                        <input type="hidden" name="_token" value="vXYEPSAafgxCI7GVTgLPL0YsvkBWLTCusznL50Va">
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" id="email" type="email" name="email" value="" autofocus
+                                       required="" placeholder="Email">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input class="form-control" id="password" type="password" name="password" required=""
+                                       placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="checkbox checkbox-primary pull-left p-t-0">
+                                    <input id="checkbox-signup" type="checkbox" name="remember">
+                                    <label for="checkbox-signup" class="text-dark"> Remember Me </label>
+                                </div>
+                                <a asp-controller="Account" asp-action="Forgotpassword" class="text-dark pull-right">
+                                    <i class="fa fa-lock m-r-5"></i> Forgot Password?
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light"
+                                        type="submit">
+                                    Log In
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <script>
+                                var facebook = "https://www.facebook.com/v3.3/dialog/oauth?client_id=2891114371217571&amp;redirect_uri=https%3A%2F%2Fbusinesssuite.us%2Fcallback%2Ffacebook&amp;scope=email&amp;response_type=code&amp;state=bYnuGw59Nyor2kishZFogIghEGzBMuDWt67PmxlV";
+                                var google = "https://accounts.google.com/o/oauth2/auth?client_id=1091395125125-51ralil1rk8cmn9sjdomg0o0fevqb0ii.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fbusinesssuite.us%2Fcallback%2Fgoogle&amp;scope=openid+profile+email&amp;response_type=code&amp;state=SLaCBeWY8xs0DIJyPg3rzt7z9AqsfXBcaMZtbjby";
+                                var twitter = "redirect/twitter.html";
+                                var linkedin = "https://www.linkedin.com/oauth/v2/authorization?client_id=86jax82nk9x52v&amp;redirect_uri=https%3A%2F%2Fbusinesssuite.us%2Fcallback%2Flinkedin&amp;scope=r_liteprofile+r_emailaddress&amp;response_type=code&amp;state=YMS5cZTu3NswKIXTFlt50Ti7cFiUESu0icuSgVSo";
+                            </script>
+                            <div class="col-xs-12 col-sm-6 col-md-6 m-t-10 mb-16">
+                                <a href="javascript:;" class="btn btn-primary btn-facebook" data-toggle="tooltip"
+                                   title="Login with Facebook" onclick="window.location.href = facebook;"
+                                   data-original-title="Login with Facebook">
+                                    <i aria-hidden="true"
+                                       class="fa fa-facebook-f"></i>
+                                    &nbsp;Login with Facebook
+                                </a>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 m-t-10 mb-16 text-right">
+                                <a href="javascript:;" class="btn btn-primary btn-google" data-toggle="tooltip"
+                                   title="Login with Google" onclick="window.location.href = google;"
+                                   data-original-title="Login with Google">
+                                    <i aria-hidden="true"
+                                       class="fa fa-google-plus"></i>
+                                    &nbsp;Login with Google
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0">
+                            <div class="col-sm-12 text-center">
+                                <p>
+                                    Don't have an account? <a asp-action="Signup" asp-controller="Account" class="text-primary m-l-5"><b>Sign Up</b></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0">
+                            <div class="col-sm-12 text-center">
+                                <p>
+                                    Go to Website <a asp-action="Index" asp-controller="Home" class="text-primary m-l-5"><b>Home</b></a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-lg-7 visible-lg" id="background-section">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/www.google.com/recaptcha/api.js"></script>
+</body>
+</html>
